@@ -4,19 +4,19 @@
     <div class="panel default blue_title h2">
       <div class="panel-body">
         <ul class="nav nav-tabs" id="myTab">
-          <li class="active"><a data-toggle="tab" href="#tab1"><b>Inventory Management</b></a></li>
+          <li class="active"><a data-toggle="tab" href="#tab1"><b>Spare Parts Management</b></a></li>
           <li><a data-toggle="tab" href="#tab2"><b>Spares Requests   <span class="badge">14</span></b></a></li>
         </ul>
         <div class="tab-content" id="myTabContent">
           <div id="tab1" class="tab-pane fade in active">
 
-            <a href="<?php echo site_url('inventory/create');?>" class="btn btn-primary" >Add New Invetory</a> 
+            <a href="<?php echo site_url('spareparts/create');?>" class="btn btn-primary" >Add New Spare Part</a> 
             <div class="btn-group pull-right">
-              <button class="btn btn-success dropdown-toggle " data-toggle="dropdown"> Add Category <span class="caret"></span> </button>
+              <button class="btn btn-success dropdown-toggle " data-toggle="dropdown"> Add Options <span class="caret"></span> </button>
               <ul class="dropdown-menu">
-                <li> <a href="<?php echo site_url('e_name');?>">New equipment category</a> </li>
+                <li> <a href="<?php echo site_url('e_name');?>">New Equipment Option</a> </li>
                 <li class="divider"></li>
-                <li> <a href="<?php echo site_url('e_type');?>">New type category</a> </li>
+                <li> <a href="<?php echo site_url('e_type');?>">New Spare Part Type </a> </li>
 
               </ul>
             </div>
@@ -27,12 +27,12 @@
               <table class="table table-bordered table-hover table-striped">
                 <thead>
                   <tr>
-                    <th>Inevtory #</th>
+                    <th>Spare Parts #</th>
                     <th>Equipment</th>
-                    <th>Equipment Type</th>
-                    <th>Equipment Part</th>
-                    <th>Equipment Brand</th>
-                    <th>Equipment Model</th>
+                    <th>Spare Part Type</th>
+                    <th>Spare Part Name</th>
+                    <th>Manufacturer</th>
+                    <th>Model</th>
                     <th>catalogue #</th>
                     <th>Serial #</th>
                     <th>Quantity</th>
@@ -77,7 +77,7 @@
           </div>
           <div id="tab2" class="tab-pane fade">
 
-            <a href="<?php echo site_url('inventory/create');?>" class="btn btn-primary" >Issue Item</a> 
+            <a href="<?php echo site_url('spareparts/create');?>" class="btn btn-primary" >Issue Item</a> 
             <br><br>
             <table class="table table-bordered table-striped">
               <thead>

@@ -1,5 +1,5 @@
 <?php
-class Inventory extends MY_Controller {
+class Spareparts extends MY_Controller {
 
       function __construct() {
         parent::__construct();
@@ -8,11 +8,11 @@ class Inventory extends MY_Controller {
 
       public function index()
       {
-        $this->load->model('mdl_inventory');
+        $this->load->model('mdl_spareparts');
         $this->load->library('pagination');
         $this->load->library('table');
-        $config['base_url'] = base_url().'/inventory/index';
-        $config['total_rows'] = $this->mdl_inventory->get('id')->num_rows;
+        $config['base_url'] = base_url().'/spareparts/index';
+        $config['total_rows'] = $this->mdl_spareparts->get('id')->num_rows;
         $config['per_page'] = 10;
         $config['num_links'] = 4;
         $config['full_tag_open'] = '<div><ul class="pagination pagination-small pagination-centered">';
@@ -33,10 +33,10 @@ class Inventory extends MY_Controller {
         $this->pagination->initialize($config);
         $data['records'] = $this->db->get('m_cold_chain_equip', $config['per_page'], $this->uri->segment(3));
         $data['section'] = "Maintenance";
-        $data['subtitle'] = "Inventory";
-        $data['page_title'] = "Cold Chain Inventory";
-        $data['module']="inventory";
-        $data['view_file']="list_inventory_view";
+        $data['subtitle'] = "Spare Parts";
+        $data['page_title'] = "Cold Chain Spare Parts";
+        $data['module']="spareparts";
+        $data['view_file']="list_spareparts_view";
         $data['user_object'] = $this->get_user_object();
         $data['main_title'] = $this->get_title();
         echo Modules::run('template/'.$this->redirect($this->session->userdata['logged_in']['user_group']), $data); 
@@ -50,35 +50,35 @@ class Inventory extends MY_Controller {
 
         $update_id= $this->uri->segment(3);
         $data = array();
-        $this->load->model('mdl_inventory');
+        $this->load->model('mdl_spareparts');
 
             if (!isset($update_id )){
               $update_id = $this->input->post('update_id', $id);
-              $data['maequipment']  = $this->mdl_inventory->getequip();
-              $data['matype']  = $this->mdl_inventory->getequiptype();
+              $data['maequipment']  = $this->mdl_spareparts->getequip();
+              $data['matype']  = $this->mdl_spareparts->getequiptype();
 
             }
 
             if (is_numeric($update_id)){
               $data = $this->get_data_from_db($update_id);
               $data['update_id'] = $update_id;
-              $data['maequipment']  = $this->mdl_inventory->getequip();
-              $data['matype']  = $this->mdl_inventory->getequiptype();
+              $data['maequipment']  = $this->mdl_spareparts->getequip();
+              $data['matype']  = $this->mdl_spareparts->getequiptype();
 
 
             } else {
               $data= $this->get_data_from_post();
-              $data['maequipment']  = $this->mdl_inventory->getequip();
-              $data['matype']  = $this->mdl_inventory->getequiptype();
+              $data['maequipment']  = $this->mdl_spareparts->getequip();
+              $data['matype']  = $this->mdl_spareparts->getequiptype();
 
 
             }
 
         $data['section'] = "Maintenance";
-        $data['subtitle'] = "Inventory";
-        $data['page_title'] = "Add Cold Chain Inventory Item";
-        $data['module'] = "inventory";
-        $data['view_file'] = "create_inventory_form";
+        $data['subtitle'] = "Spare Parts";
+        $data['page_title'] = "Add Cold Chain Spare Parts and Accessories";
+        $data['module'] = "spareparts";
+        $data['view_file'] = "create_spareparts_form";
         $data['user_object'] = $this->get_user_object();
         $data['main_title'] = $this->get_title();
         echo Modules::run('template/'.$this->redirect($this->session->userdata['logged_in']['user_group']), $data);
@@ -163,79 +163,79 @@ class Inventory extends MY_Controller {
 
            if(is_numeric($update_id)){
              $this->_update($update_id, $data);
-             $this->session->set_flashdata('msg', '<div id="alert-message" class="alert alert-success text-center">Inventory details updated successfully!</div>');
+             $this->session->set_flashdata('msg', '<div id="alert-message" class="alert alert-success text-center">Spare Parts details updated successfully!</div>');
 
            } else {
              $this->_insert($data);
-             $this->session->set_flashdata('msg', '<div id="alert-message" class="alert alert-success text-center">New Inventory added successfully!</div>');
+             $this->session->set_flashdata('msg', '<div id="alert-message" class="alert alert-success text-center">New Spare Part added successfully!</div>');
            }
 
                        //$this->session->set_flashdata('success', 'depot added successfully.');
-       redirect('inventory');
+       redirect('spareparts');
      }
     }
 
     function delete($id){
       $this->_delete($id);
-      $this->session->set_flashdata('msg', '<div id="alert-message" class="alert alert-success text-center">Inventory details deleted successfully!</div>');
-      redirect('inventory');
+      $this->session->set_flashdata('msg', '<div id="alert-message" class="alert alert-success text-center">Spare Parts details deleted successfully!</div>');
+      redirect('spareparts');
     }
 
 
     function get($order_by){
-      $this->load->model('mdl_inventory');
-      $query = $this->mdl_inventory->get($order_by);
+      $this->load->model('mdl_spareparts');
+      $query = $this->mdl_spareparts->get($order_by);
       return $query;
     }
 
     function get_with_limit($limit, $offset, $order_by) {
-      $this->load->model('mdl_inventory');
-      $query = $this->mdl_inventory->get_with_limit($limit, $offset, $order_by);
+      $this->load->model('mdl_spareparts');
+      $query = $this->mdl_spareparts->get_with_limit($limit, $offset, $order_by);
       return $query;
     }
 
     function get_where($id){
-      $this->load->model('mdl_inventory');
-      $query = $this->mdl_inventory->get_where($id);
+      $this->load->model('mdl_spareparts');
+      $query = $this->mdl_spareparts->get_where($id);
       return $query;
     }
 
     function get_where_custom($col, $value) {
-      $this->load->model('mdl_inventory');
-      $query = $this->mdl_inventory->get_where_custom($col, $value);
+      $this->load->model('mdl_spareparts');
+      $query = $this->mdl_spareparts->get_where_custom($col, $value);
       return $query;
     }
 
     function _insert($data){
-      $this->load->model('mdl_inventory');
-      $this->mdl_inventory->_insert($data);
+      $this->load->model('mdl_spareparts');
+      $this->mdl_spareparts->_insert($data);
     }
 
     function _update($id, $data){
-      $this->load->model('mdl_inventory');
-      $this->mdl_inventory->_update($id, $data);
+      $this->load->model('mdl_spareparts');
+      $this->mdl_spareparts->_update($id, $data);
     }
 
     function _delete($id){
-      $this->load->model('mdl_inventory');
-      $this->mdl_inventory->_delete($id);
+      $this->load->model('mdl_spareparts');
+      $this->mdl_spareparts->_delete($id);
     }
 
     function count_where($column, $value) {
-      $this->load->model('mdl_inventory');
-      $count = $this->mdl_inventory->count_where($column, $value);
+      $this->load->model('mdl_spareparts');
+      $count = $this->mdl_spareparts->count_where($column, $value);
       return $count;
     }
 
     function get_max() {
-      $this->load->model('mdl_inventory');
-      $max_id = $this->mdl_inventory->get_max();
+      $this->load->model('mdl_spareparts');
+      $max_id = $this->mdl_spareparts->get_max();
       return $max_id;
     }
 
     function _custom_query($mysql_query) {
-      $this->load->model('mdl_inventory');
-      $query = $this->mdl_inventory->_custom_query($mysql_query);
+      $this->load->model('mdl_spareparts');
+      $query = $this->mdl_spareparts->_custom_query($mysql_query);
       return $query;
     }
 

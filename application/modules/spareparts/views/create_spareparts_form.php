@@ -3,7 +3,7 @@
     <div class="col-lg-12 ">
     <?php echo validation_errors('<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><b>',' </b></div>');?>
       
-      <?php echo form_open('inventory/submit',array('class'=>'form-horizontal','role'=>'form'));
+      <?php echo form_open('spareparts/submit',array('class'=>'form-horizontal','role'=>'form'));
       $equipments = array();
       foreach($maequipment as $row ){
       $equipments[$row->id] = $row->name; 
@@ -28,7 +28,7 @@
             </div><!--/span-->
              <div class="col-lg-6">
              <div class="control-group">
-                  <label><b>Equipment Type</b></label>
+                  <label><b>Spare Part Type</b></label>
                   <?php echo form_dropdown('etype',$etypes , $etype, 'id="etype" class="form-control"  AutoComplete=off');?>
                 </div><!--/form-group-->
             </div>
@@ -37,13 +37,13 @@
             <div class="row">
             <div class="col-lg-6">
              <div class="control-group">
-                  <label><b>Equipment Part</b></label>
-                  <input type="text" name="part_type" placeholder="Enter Equipment part" class="form-control">
+                  <label><b>Spare Part Name</b></label>
+                  <input type="text" name="part_type" placeholder="Enter Spare Part Name " class="form-control">
                 </div><!--/form-group-->
             </div><!--/span-->
              <div class="col-lg-6">
              <div class="control-group">
-                  <label><b>Inventory/Serial No #</b></label>
+                  <label><b>Spare Part / Serial No #</b></label>
                   <input type="text" name="serial"  class="form-control">
                 </div><!--/form-group-->
             </div>
@@ -51,13 +51,13 @@
             <div class="row">
             <div class="col-lg-6">
              <div class="control-group">
-                  <label><b>Equipment Brand</b></label>
+                  <label><b>Spare Part Manufacturer</b></label>
                   <input type="text" name="brand" class="form-control">
                 </div><!--/form-group-->
             </div><!--/span-->
              <div class="col-lg-6">
              <div class="control-group">
-                  <label><b>Equipment Model</b></label>
+                  <label><b>Spare Part Model</b></label>
                   <input type="text" name="model"  class="form-control">
                 </div><!--/form-group-->
             </div>
@@ -93,7 +93,7 @@
             </div><br/>
 
       <button class="btn btn-lg btn-danger" name="submit" type="submit">Submit</button>
-      <a class="btn btn-lg btn-info " href="<?php echo site_url('inventory');?>">CANCEL</a>
+      <a class="btn btn-lg btn-info " href="<?php echo site_url('spareparts');?>">CANCEL</a>
      
       <?php 
       if (isset($update_id)){

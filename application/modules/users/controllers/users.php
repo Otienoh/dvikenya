@@ -132,6 +132,7 @@ function register(){
 
     if ($this->form_validation->run() == FALSE)
     {   
+        
         redirect('users/create_user');         
 
     }
@@ -167,6 +168,7 @@ function register(){
         if(isset($this->session->userdata['logged_in'])){
             redirect('dashboard/home');
         }else{
+          $this->session->set_flashdata('msg', '<div id="alert-message" class="alert alert-danger text-center">Both Username and Password Required</div>');
             redirect('users'); 
 
         }

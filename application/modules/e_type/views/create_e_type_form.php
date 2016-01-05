@@ -4,8 +4,8 @@
     <div class="panel default blue_title h2">
       <div class="panel-body">
         <ul class="nav nav-tabs" id="myTab">
-          <li class="active"><a data-toggle="tab" href="#tab1"><b>Add New Type</b></a></li>
-          <li><a data-toggle="tab" href="#tab2"><b> Equipment Types</b></a></li>
+          <li class="active"><a data-toggle="tab" href="#tab1"><b>Add New Spare Part Type</b></a></li>
+          <li><a data-toggle="tab" href="#tab2"><b>Type of Spare Parts </b></a></li>
         </ul>
         <div class="tab-content" id="myTabContent">
           <div id="tab1" class="tab-pane fade in active">
@@ -32,7 +32,7 @@
 
                   <div class="form-group">
                     <?php
-                    echo form_label('Equipment Type','name');
+                    echo form_label('Spare Part Type','name');
                     echo form_error('name');
                     echo form_input(['name' => 'name', 'id' => 'name',  'value' => $name ,'class' => 'form-control', 'placeholder' => 'Enter Type of Equipment',  'AutoComplete' => 'off']);
                     ?>
@@ -40,7 +40,7 @@
                    
                 
                   <button class="btn btn-lg btn-danger " name="submit" type="submit">SUBMIT</button>
-                   <a class="btn btn-lg btn-info " href="<?php echo site_url('inventory');?>">CANCEL</a>
+                   <a class="btn btn-lg btn-info " href="<?php echo site_url('spareparts');?>">CANCEL</a>
                  
                   <?php 
                   if (isset($update_id)){

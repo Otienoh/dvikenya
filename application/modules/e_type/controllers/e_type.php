@@ -35,8 +35,8 @@ public function index()
             $this->pagination->initialize($config);
             $data['records'] = $this->db->get('equip_type_view', $config['per_page'], $this->uri->segment(3));
             $data['section'] = "Maintenance";
-            $data['subtitle'] = "Inventory";
-            $data['page_title'] = "Equipment Types";
+            $data['subtitle'] = "Spare Parts";
+            $data['page_title'] = "Spare Part Types";
             $data['module']="e_type";
             $data['view_file']="create_e_type_form";
             $data['user_object'] = $this->get_user_object();
@@ -78,8 +78,8 @@ public function index()
         }
 
         $data['section'] = "Maintenance";
-        $data['subtitle'] = "Inventory";
-        $data['page_title'] = "Equipment Types";
+        $data['subtitle'] = "Spare Parts";
+        $data['page_title'] = "Spare Part Types";
         $data['module'] = "e_type";
         $data['view_file'] = "create_e_type_form";
         $data['user_object'] = $this->get_user_object();
@@ -108,8 +108,8 @@ public function index()
       function submit (){
 
         $this->load->library('form_validation');
-        $this->form_validation->set_rules('name', 'Equipment Name', 'required|xss_clean');
-         $this->form_validation->set_rules('equipment', 'Equipment ', 'required|xss_clean');
+        $this->form_validation->set_rules('name', 'Spare Part Type', 'required|xss_clean');
+         $this->form_validation->set_rules('equipment', 'Equipment Name', 'required|xss_clean');
         
 
 
@@ -124,20 +124,20 @@ public function index()
 
          if(is_numeric($update_id)){
            $this->_update($update_id, $data);
-           $this->session->set_flashdata('msg', '<div id="alert-message" class="alert alert-success text-center">Equipment Category details updated successfully!</div>');
+           $this->session->set_flashdata('msg', '<div id="alert-message" class="alert alert-success text-center">Spare Part Type details updated successfully!</div>');
 
          } else {
            $this->_insert($data);
-           $this->session->set_flashdata('msg', '<div id="alert-message" class="alert alert-success text-center">New Equipment Category added successfully!</div>');
+           $this->session->set_flashdata('msg', '<div id="alert-message" class="alert alert-success text-center">New Spare Part Type added successfully!</div>');
          }
 
-         redirect('inventory');
+         redirect('spareparts');
        }
       }
 
       function delete($id){
         $this->_delete($id);
-        $this->session->set_flashdata('msg', '<div id="alert-message" class="alert alert-success text-center">Equipment Category details deleted successfully!</div>');
+        $this->session->set_flashdata('msg', '<div id="alert-message" class="alert alert-success text-center">Spare Part Type details deleted successfully!</div>');
         redirect('e_type');
       }
 

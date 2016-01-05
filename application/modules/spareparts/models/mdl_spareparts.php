@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 
-class Mdl_inventory extends CI_Model {
+class Mdl_spareparts extends CI_Model {
 
 function __construct() {
 parent::__construct();

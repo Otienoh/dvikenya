@@ -4,8 +4,8 @@
     <div class="panel default blue_title h2">
       <div class="panel-body">
         <ul class="nav nav-tabs" id="myTab">
-          <li class="active"><a data-toggle="tab" href="#tab1"><b>Add New Category</b></a></li>
-          <li><a data-toggle="tab" href="#tab2"><b> Equipments Categories</b></a></li>
+          <li class="active"><a data-toggle="tab" href="#tab1"><b>Add New Equipment Option</b></a></li>
+          <li><a data-toggle="tab" href="#tab2"><b> Equipments Options</b></a></li>
         </ul>
         <div class="tab-content" id="myTabContent">
           <div id="tab1" class="tab-pane fade in active">
@@ -24,7 +24,7 @@
                   </div>
                 
                   <button class="btn btn-lg btn-danger " name="submit" type="submit">SUBMIT</button>
-                   <a class="btn btn-lg btn-info " href="<?php echo site_url('inventory');?>">CANCEL</a>
+                   <a class="btn btn-lg btn-info " href="<?php echo site_url('spareparts');?>">CANCEL</a>
                  
                   <?php 
                   if (isset($update_id)){

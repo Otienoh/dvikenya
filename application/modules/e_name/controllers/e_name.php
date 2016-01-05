@@ -35,7 +35,7 @@ public function index()
             $this->pagination->initialize($config);
             $data['records'] = $this->db->get('m_equipment_options', $config['per_page'], $this->uri->segment(3));
             $data['section'] = "Maintenance";
-            $data['subtitle'] = "Inventory";
+            $data['subtitle'] = "Spare Parts";
             $data['page_title'] = "Equipment Options";
             $data['module']="e_name";
             $data['view_file']="create_e_name_form";
@@ -70,7 +70,7 @@ public function index()
         }
 
         $data['section'] = "Maintenance";
-        $data['subtitle'] = "Inventory";
+        $data['subtitle'] = "Spare Parts";
         $data['page_title'] = "Equipment Options";
         $data['module'] = "e_name";
         $data['view_file'] = "create_e_name_form";
@@ -113,20 +113,20 @@ public function index()
 
          if(is_numeric($update_id)){
            $this->_update($update_id, $data);
-           $this->session->set_flashdata('msg', '<div id="alert-message" class="alert alert-success text-center">Equipment Category details updated successfully!</div>');
+           $this->session->set_flashdata('msg', '<div id="alert-message" class="alert alert-success text-center">Equipment Option details updated successfully!</div>');
 
          } else {
            $this->_insert($data);
-           $this->session->set_flashdata('msg', '<div id="alert-message" class="alert alert-success text-center">New Equipment Category added successfully!</div>');
+           $this->session->set_flashdata('msg', '<div id="alert-message" class="alert alert-success text-center">New Equipment Option added successfully!</div>');
          }
 
-         redirect('inventory');
+         redirect('spareparts');
        }
       }
 
       function delete($id){
         $this->_delete($id);
-        $this->session->set_flashdata('msg', '<div id="alert-message" class="alert alert-success text-center">Equipment Category details deleted successfully!</div>');
+        $this->session->set_flashdata('msg', '<div id="alert-message" class="alert alert-success text-center">Equipment Option details deleted successfully!</div>');
         redirect('e_name');
       }
 
