@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 24, 2015 at 06:26 AM
+-- Generation Time: Jan 08, 2016 at 02:54 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -386,7 +386,7 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
 --
 
 INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('f6942df3dc980cb93c6526b3e0958254', '::1', 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0', 1450933561, 'a:3:{s:9:"user_data";s:0:"";s:9:"logged_in";a:7:{s:7:"user_id";s:2:"19";s:10:"user_fname";s:9:"metNation";s:10:"user_lname";s:4:"User";s:9:"user_name";s:14:"metNation User";s:10:"user_group";s:1:"7";s:10:"user_level";s:1:"1";s:9:"logged_in";b:1;}s:13:"flash:old:msg";s:103:"<div id="alert-message" class="alert alert-success text-center">New Inventory added successfully!</div>";}');
+('d8a8ddfbc55e9ca45c33b04b8d1ab48a', '::1', 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0', 1452249170, 'a:2:{s:9:"user_data";s:0:"";s:9:"logged_in";a:6:{s:7:"user_id";s:1:"2";s:10:"user_fname";s:5:"Admin";s:10:"user_lname";s:8:"Dvikenya";s:10:"user_group";s:1:"1";s:10:"user_level";s:1:"1";s:9:"logged_in";b:1;}}');
 
 -- --------------------------------------------------------
 
@@ -4016,7 +4016,7 @@ INSERT INTO `m_depot_fridges` (`id`, `fridge_id`, `temperature_monitor_no`, `mai
 CREATE TABLE IF NOT EXISTS `m_equipment_options` (
   `id` int(14) NOT NULL,
   `name` varchar(50) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `m_equipment_options`
@@ -14642,7 +14642,7 @@ CREATE TABLE IF NOT EXISTS `m_users` (
   `password` varchar(255) NOT NULL,
   `user_group` int(12) NOT NULL,
   `user_level` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `m_users`
@@ -14869,7 +14869,7 @@ CREATE TABLE IF NOT EXISTS `user_base` (
   `county` int(11) DEFAULT NULL,
   `subcounty` int(11) DEFAULT NULL,
   `facility` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user_base`
@@ -14884,7 +14884,6 @@ INSERT INTO `user_base` (`id`, `user_id`, `national`, `region`, `county`, `subco
 (15, 15, 1, 6, 12, 190, 0),
 (16, 16, 1, 6, 12, 190, 70),
 (17, 17, 1, 6, 12, 190, 118),
-(18, 18, 1, 0, 0, 0, 0),
 (19, 19, 1, 0, 0, 0, 0),
 (20, 20, 1, 0, 0, 0, 0),
 (21, 21, 0, 0, 0, 0, 0),
@@ -14894,7 +14893,8 @@ INSERT INTO `user_base` (`id`, `user_id`, `national`, `region`, `county`, `subco
 (25, 20, 1, 6, 0, 0, 0),
 (26, 21, 1, 6, 12, 0, 0),
 (27, 22, 1, 6, 12, 190, 0),
-(28, 23, 1, 6, 12, 190, 70);
+(28, 23, 1, 6, 12, 190, 70),
+(29, 24, 1, 5, 4, 9, 19);
 
 -- --------------------------------------------------------
 
@@ -15025,6 +15025,21 @@ CREATE TABLE IF NOT EXISTS `view_facility_orders` (
 ,`facility` int(11)
 ,`subcounty` int(11)
 ,`subcounty_name` varchar(255)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `view_national_users`
+--
+CREATE TABLE IF NOT EXISTS `view_national_users` (
+`id` int(11)
+,`f_name` varchar(50)
+,`l_name` varchar(50)
+,`phone` varchar(50)
+,`email` varchar(100)
+,`user_group` int(12)
+,`country` varchar(5)
 );
 
 -- --------------------------------------------------------
@@ -15319,6 +15334,15 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
+-- Structure for view `view_national_users`
+--
+DROP TABLE IF EXISTS `view_national_users`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_national_users` AS select `m_users`.`id` AS `id`,`m_users`.`f_name` AS `f_name`,`m_users`.`l_name` AS `l_name`,`m_users`.`phone` AS `phone`,`m_users`.`email` AS `email`,`m_users`.`user_group` AS `user_group`,(select 'Kenya') AS `country` from `m_users` where (`m_users`.`user_level` = 1) order by `m_users`.`f_name`;
+
+-- --------------------------------------------------------
+
+--
 -- Structure for view `view_region_orders`
 --
 DROP TABLE IF EXISTS `view_region_orders`;
@@ -15530,7 +15554,8 @@ ALTER TABLE `order_item`
 -- Indexes for table `user_base`
 --
 ALTER TABLE `user_base`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_user_base_idx` (`user_id`);
 
 --
 -- Indexes for table `user_levels`
@@ -15571,7 +15596,7 @@ ALTER TABLE `m_depot_fridges`
 -- AUTO_INCREMENT for table `m_equipment_options`
 --
 ALTER TABLE `m_equipment_options`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `m_equipment_type`
 --
@@ -15636,7 +15661,7 @@ ALTER TABLE `m_uploads`
 -- AUTO_INCREMENT for table `m_users`
 --
 ALTER TABLE `m_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `m_vaccines`
 --
@@ -15651,7 +15676,7 @@ ALTER TABLE `m_vvm_status`
 -- AUTO_INCREMENT for table `user_base`
 --
 ALTER TABLE `user_base`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `user_levels`
 --
