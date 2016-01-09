@@ -87,41 +87,42 @@
             <ul>
             <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Temp &amp; Monitoring</b> </a> </li>
             <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Log Reports</b> </a> </li>              
-            </ul>
-          </li>
-          <li> <a href="javascript:void(0);"> <i class="fa fa-wrench "></i> CC MAINTENANCE<span class="plus"><i class="fa fa-plus"></i></span> </a>
+            
+          
+         <!--  <li> <a href="javascript:void(0);"> <i class="fa fa-wrench "></i> CC MAINTENANCE<span class="plus"><i class="fa fa-plus"></i></span> </a> -->
              <?php
              if ( $user_object['user_level']=='1') {?>
-            <ul>
+            
               <li> <a href="<?php echo site_url('spareparts');?>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Spare Parts</b> </a> </li>
               <li> <a href="<?php echo site_url('jobcard');?>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Job Cards</b> </a> </li>
               <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Field Engineers</b> </a> </li>
-            </ul>
+            
             <?php } elseif( $user_object['user_level']=='2')  {?>
-            <ul>
+            
               <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Spare Requests</b> </a> </li>
               <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Job Cards</b> </a> </li>
               <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Field Engineers</b> </a> </li>
-            </ul>
+            
             <?php } elseif( $user_object['user_level']=='3')  {?>
-             <ul>
+             
               <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Spare Requests</b> </a> </li>
               <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Job Cards</b> </a> </li>
               <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Field Engineers</b> </a> </li>
-            </ul>
+            
             <?php } elseif( $user_object['user_level']=='4')  {?>
-             <ul>
+             
               <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Job Requests</b> </a> </li>
               <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Job Cards</b> </a> </li>
               
-            </ul>
+            
             <?php } else  {?>
-            <ul>
+            
                <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Job Requests</b> </a> </li>
               <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Job Cards</b> </a> </li>
-            </ul>
+            
            <?php }
-           ?> 
+           ?>
+           </ul> 
           </li>
           <li> <a href="javascript:void(0);"> <i class="fa fa-bar-chart "></i>REPORTS<span class="plus"><i class="fa fa-plus"></i></span> </a>
             <ul>
