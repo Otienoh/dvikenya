@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 08, 2016 at 02:54 PM
+-- Generation Time: Jan 09, 2016 at 10:37 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -386,7 +386,7 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
 --
 
 INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('d8a8ddfbc55e9ca45c33b04b8d1ab48a', '::1', 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0', 1452249170, 'a:2:{s:9:"user_data";s:0:"";s:9:"logged_in";a:6:{s:7:"user_id";s:1:"2";s:10:"user_fname";s:5:"Admin";s:10:"user_lname";s:8:"Dvikenya";s:10:"user_group";s:1:"1";s:10:"user_level";s:1:"1";s:9:"logged_in";b:1;}}');
+('6e4a6b4faa5896daa99d6c6e8b7b442a', '::1', 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0', 1452374680, 'a:2:{s:9:"user_data";s:0:"";s:9:"logged_in";a:6:{s:7:"user_id";s:2:"19";s:10:"user_fname";s:9:"metNation";s:10:"user_lname";s:4:"User";s:10:"user_group";s:1:"7";s:10:"user_level";s:1:"1";s:9:"logged_in";b:1;}}');
 
 -- --------------------------------------------------------
 
@@ -3846,12 +3846,10 @@ CREATE TABLE IF NOT EXISTS `facility_userbase_view` (
 
 CREATE TABLE IF NOT EXISTS `m_cold_chain_equip` (
   `id` int(14) NOT NULL,
-  `equipment` varchar(10) NOT NULL,
+  `equipment` varchar(100) NOT NULL,
   `etype` varchar(50) NOT NULL,
   `part_type` varchar(50) NOT NULL,
   `brand` varchar(50) NOT NULL,
-  `model` varchar(50) NOT NULL,
-  `serial` varchar(50) NOT NULL,
   `catalogue` varchar(50) NOT NULL,
   `unit_price` decimal(16,2) NOT NULL,
   `date_purchased` date NOT NULL,
@@ -3866,10 +3864,10 @@ CREATE TABLE IF NOT EXISTS `m_cold_chain_equip` (
 -- Dumping data for table `m_cold_chain_equip`
 --
 
-INSERT INTO `m_cold_chain_equip` (`id`, `equipment`, `etype`, `part_type`, `brand`, `model`, `serial`, `catalogue`, `unit_price`, `date_purchased`, `quantity`, `decomission`, `date_added`, `location`, `added_by`) VALUES
-(1, 'Cold Box', 'Long term', 'Cover', 'samsung', 'S23232', '123456', '121212', '1000.00', '2014-11-02', 1223, '0', '2015-12-22 21:00:00', 0, '0'),
-(2, 'Refrigirat', 'Freezer', 'Door Seal', 'Hiebel', 'H4545', '232323', '32323345', '500.00', '2015-12-05', 30, '0', '2015-12-22 21:00:00', 0, 'metNation User'),
-(3, '3', '0', 'test', 'samsung', 'S23232', '232323', '1', '500.00', '2015-12-05', 30, '0', '2015-12-23 21:00:00', 0, 'metNation User');
+INSERT INTO `m_cold_chain_equip` (`id`, `equipment`, `etype`, `part_type`, `brand`, `catalogue`, `unit_price`, `date_purchased`, `quantity`, `decomission`, `date_added`, `location`, `added_by`) VALUES
+(1, 'Cold Box', 'Long term', 'Cover', 'samsung', '121212', '1000.00', '2014-11-02', 1223, '0', '2015-12-22 21:00:00', 0, '0'),
+(2, 'Refrigirat', 'Freezer', 'Door Seal', 'Hiebel', '32323345', '500.00', '2015-12-05', 30, '0', '2015-12-22 21:00:00', 0, 'metNation User'),
+(3, '3', '0', 'test', 'samsung', '1', '500.00', '2015-12-05', 30, '0', '2015-12-23 21:00:00', 0, 'metNation User');
 
 -- --------------------------------------------------------
 
@@ -4038,7 +4036,7 @@ CREATE TABLE IF NOT EXISTS `m_equipment_type` (
   `id` int(14) NOT NULL,
   `name` varchar(50) NOT NULL,
   `equipment` int(14) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `m_equipment_type`
@@ -4047,7 +4045,8 @@ CREATE TABLE IF NOT EXISTS `m_equipment_type` (
 INSERT INTO `m_equipment_type` (`id`, `name`, `equipment`) VALUES
 (1, 'Long Time Temp', 1),
 (2, 'Freezer', 2),
-(3, 'Short Term Temp', 1);
+(3, 'Short Term Temp', 1),
+(4, 'Cooling Unit', 2);
 
 -- --------------------------------------------------------
 
@@ -14137,6 +14136,19 @@ INSERT INTO `m_region` (`id`, `region_name`, `region_headquarter`, `region_manag
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `m_sparepart_name`
+--
+
+CREATE TABLE IF NOT EXISTS `m_sparepart_name` (
+  `id` int(14) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `equipment_model` int(14) NOT NULL,
+  `sparepart_type` int(14) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `m_stock_balance`
 --
 
@@ -14642,7 +14654,7 @@ CREATE TABLE IF NOT EXISTS `m_users` (
   `password` varchar(255) NOT NULL,
   `user_group` int(12) NOT NULL,
   `user_level` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `m_users`
@@ -14651,7 +14663,6 @@ CREATE TABLE IF NOT EXISTS `m_users` (
 INSERT INTO `m_users` (`id`, `f_name`, `l_name`, `username`, `phone`, `email`, `password`, `user_group`, `user_level`) VALUES
 (1, 'Julie', 'Otieno', 'julie', '07070760675', 'julie.egesa@strathmore.edu', '0a692f089b30b507bc881486d21a15f4ce7534ba02cf4d9bcc0062375fdcde1a364a9370593c274e0f0632fc7ae7448bdee5d267b64685f07bd7192128f6ff38', 3, 2),
 (2, 'Admin', 'Dvikenya', 'advikenya', '07070760675', 'admin@dvikenya.com', '0a692f089b30b507bc881486d21a15f4ce7534ba02cf4d9bcc0062375fdcde1a364a9370593c274e0f0632fc7ae7448bdee5d267b64685f07bd7192128f6ff38', 1, 1),
-(6, 'test', 'test', 'tester', '929292', 'qqqqqq@wqw.com', '0a692f089b30b507bc881486d21a15f4ce7534ba02cf4d9bcc0062375fdcde1a364a9370593c274e0f0632fc7ae7448bdee5d267b64685f07bd7192128f6ff38', 3, 5),
 (13, 'Rift', 'Valley', 'riftvalley', '0703121212', 'rv@dvikenya.com', '0a692f089b30b507bc881486d21a15f4ce7534ba02cf4d9bcc0062375fdcde1a364a9370593c274e0f0632fc7ae7448bdee5d267b64685f07bd7192128f6ff38', 3, 2),
 (14, 'Baringo', 'County', 'baringocounty', '07070760675', 'baringo@dvikenya.com', '0a692f089b30b507bc881486d21a15f4ce7534ba02cf4d9bcc0062375fdcde1a364a9370593c274e0f0632fc7ae7448bdee5d267b64685f07bd7192128f6ff38', 3, 3),
 (15, 'Baringo', 'North', 'bnorth', '0703121212', 'bnorth@dvikenya.com', '0a692f089b30b507bc881486d21a15f4ce7534ba02cf4d9bcc0062375fdcde1a364a9370593c274e0f0632fc7ae7448bdee5d267b64685f07bd7192128f6ff38', 3, 4),
@@ -15496,6 +15507,12 @@ ALTER TABLE `m_region`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `m_sparepart_name`
+--
+ALTER TABLE `m_sparepart_name`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `m_stock_balance`
 --
 ALTER TABLE `m_stock_balance`
@@ -15601,7 +15618,7 @@ ALTER TABLE `m_equipment_options`
 -- AUTO_INCREMENT for table `m_equipment_type`
 --
 ALTER TABLE `m_equipment_type`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `m_facility`
 --
@@ -15638,6 +15655,11 @@ ALTER TABLE `m_physical_count`
 ALTER TABLE `m_region`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
+-- AUTO_INCREMENT for table `m_sparepart_name`
+--
+ALTER TABLE `m_sparepart_name`
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `m_stock_balance`
 --
 ALTER TABLE `m_stock_balance`
@@ -15661,7 +15683,7 @@ ALTER TABLE `m_uploads`
 -- AUTO_INCREMENT for table `m_users`
 --
 ALTER TABLE `m_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `m_vaccines`
 --
