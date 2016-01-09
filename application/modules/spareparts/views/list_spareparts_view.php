@@ -14,9 +14,11 @@
             <div class="btn-group pull-right">
               <button class="btn btn-success dropdown-toggle " data-toggle="dropdown"> Add Options <span class="caret"></span> </button>
               <ul class="dropdown-menu">
-                <li> <a href="<?php echo site_url('e_name');?>">New Equipment Option</a> </li>
+                <li> <a href="<?php echo site_url('e_name');?>">New Equipment Model Option</a> </li>
                 <li class="divider"></li>
-                <li> <a href="<?php echo site_url('e_type');?>">New Spare Part Type </a> </li>
+                <li> <a href="<?php echo site_url('e_type');?>">New Spare Part Type Option</a> </li>
+                <li class="divider"></li>
+                <li> <a href="<?php echo site_url('e_spare');?>">New Spare Part Name Option</a> </li>
 
               </ul>
             </div>
@@ -32,9 +34,9 @@
                     <th>Spare Part Type</th>
                     <th>Spare Part Name</th>
                     <th>Manufacturer</th>
-                    <th>Model</th>
+                    <!-- <th>Model</th> -->
                     <th>catalogue #</th>
-                    <th>Serial #</th>
+                   <!--  <th>Serial #</th> -->
                     <th>Quantity</th>
 
 
@@ -51,9 +53,9 @@
                       <td><?php echo $row->etype ?></td>
                       <td><?php echo $row->part_type ?></td>
                       <td><?php echo $row->brand ?></td>
-                      <td><?php echo $row->model ?></td>
+                      <!-- <td><?php //echo $row->model ?></td> -->
                       <td><?php echo $row->catalogue ?></td>
-                      <td><?php echo $row->serial ?></td>
+                      <!-- <td><?php //echo $row->serial ?></td> -->
                       <td><?php echo $row->quantity ?></td>
 
 

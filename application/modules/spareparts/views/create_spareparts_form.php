@@ -22,7 +22,7 @@
       <div class="row"> 
          <div class="col-lg-6">
              <div class="control-group">
-                  <label><b>Equipment Name</b></label>
+                  <label><b>Equipment Model Name</b></label>
                   <?php echo form_dropdown('equipment',$equipments , $equipment, 'id="equipment" class="form-control"  AutoComplete=off');?>
                 </div><!--/form-group-->
             </div><!--/span-->
@@ -41,28 +41,15 @@
                   <input type="text" name="part_type" placeholder="Enter Spare Part Name " class="form-control">
                 </div><!--/form-group-->
             </div><!--/span-->
+              
              <div class="col-lg-6">
-             <div class="control-group">
-                  <label><b>Spare Part / Serial No #</b></label>
-                  <input type="text" name="serial"  class="form-control">
-                </div><!--/form-group-->
-            </div>
-            </div><br/>
-            <div class="row">
-            <div class="col-lg-6">
              <div class="control-group">
                   <label><b>Spare Part Manufacturer</b></label>
                   <input type="text" name="brand" class="form-control">
                 </div><!--/form-group-->
             </div><!--/span-->
-             <div class="col-lg-6">
-             <div class="control-group">
-                  <label><b>Spare Part Model</b></label>
-                  <input type="text" name="model"  class="form-control">
-                </div><!--/form-group-->
-            </div>
             </div><br/>
-
+            
       <div class="row">
             <div class="col-lg-6">
              <div class="control-group">
@@ -108,7 +95,7 @@
                 //start of checker
                     $('#equipment select').change(function () {
                     var selEquip = $(this).val();
-                    console.log(selEquip);
+                   // console.log(selEquip);
                     console.log("Detected change... ");
                     
                 
