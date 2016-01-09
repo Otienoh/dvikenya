@@ -8,6 +8,8 @@ class Spareparts extends MY_Controller {
 
       public function index()
       {
+       
+       Modules::run('secure_tings/ni_met');
         $this->load->model('mdl_spareparts');
         $this->load->library('pagination');
         $this->load->library('table');
@@ -47,7 +49,7 @@ class Spareparts extends MY_Controller {
 
       function create(){
 
-
+Modules::run('secure_tings/ni_met');
         $update_id= $this->uri->segment(3);
         $data = array();
         $this->load->model('mdl_spareparts');
@@ -126,6 +128,7 @@ class Spareparts extends MY_Controller {
      }
 
      function submit (){
+      Modules::run('secure_tings/ni_met');
       $this->load->library('form_validation');
       $this->form_validation->set_rules('equipment', 'Equipment Name', 'required|xss_clean');
       $this->form_validation->set_rules('etype', 'Type of Equipment', 'required|xss_clean');
@@ -176,6 +179,7 @@ class Spareparts extends MY_Controller {
     }
 
     function delete($id){
+      Modules::run('secure_tings/ni_met');
       $this->_delete($id);
       $this->session->set_flashdata('msg', '<div id="alert-message" class="alert alert-success text-center">Spare Parts details deleted successfully!</div>');
       redirect('spareparts');

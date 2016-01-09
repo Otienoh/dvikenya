@@ -10,6 +10,7 @@ parent::__construct();
 public function index()
 	{
     
+            Modules::run('secure_tings/ni_met');
             $this->load->model('mdl_ename');
             $this->load->library('pagination');
             $this->load->library('table');
@@ -50,6 +51,7 @@ public function index()
 
         function create(){
         
+         Modules::run('secure_tings/ni_met');
          $update_id= $this->uri->segment(3);
          $data = array();
          $this->load->model('mdl_ename');
@@ -97,6 +99,7 @@ public function index()
 
       function submit (){
 
+        Modules::run('secure_tings/ni_met');
         $this->load->library('form_validation');
         $this->form_validation->set_rules('name', 'Equipment Name', 'required|xss_clean');
         
@@ -125,6 +128,7 @@ public function index()
       }
 
       function delete($id){
+        Modules::run('secure_tings/ni_met');
         $this->_delete($id);
         $this->session->set_flashdata('msg', '<div id="alert-message" class="alert alert-success text-center">Equipment Option details deleted successfully!</div>');
         redirect('e_name');

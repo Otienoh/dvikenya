@@ -9,7 +9,7 @@
 
         function index () {
           Modules::run('secure_tings/is_logged_in');
-          Modules::run('secure_tings/ni_national');
+          
           
            $this->load->model('mdl_uploads');
 

@@ -20,7 +20,7 @@ class Users extends MY_Controller
 
     function list_users(){
 
-      // Modules::run('secure_tings/ni_admin');
+      Modules::run('secure_tings/ni_admin');
        $this->load->model('mdl_users');
        $this->load->library('pagination');
        $this->load->library('table');
@@ -64,7 +64,7 @@ class Users extends MY_Controller
 
 function create_user(){
     
-  // Modules::run('secure_tings/ni_admin');
+   Modules::run('secure_tings/ni_admin');
    $data= $this->get_register_data_from_post();
    $data['magroups']  = $this->mdl_users->get_user_groups();
    $data['malevels']  = $this->mdl_users->get_user_levels();
