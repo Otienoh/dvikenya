@@ -17,46 +17,51 @@
                 <li> <a href="<?php echo site_url('e_name');?>">New Equipment Model Option</a> </li>
                 <li class="divider"></li>
                 <li> <a href="<?php echo site_url('e_type');?>">New Spare Part Type Option</a> </li>
-                <li class="divider"></li>
-                <li> <a href="<?php echo site_url('e_spare');?>">New Spare Part Name Option</a> </li>
+                <!-- <li class="divider"></li>
+                <li> <a href="<?php echo site_url('e_spare');?>">New Spare Part Name Option</a> </li> -->
 
               </ul>
             </div>
             <br>
             <?php echo $this->session->flashdata('msg');  ?>
             <br>
+           
             <div class="table-responsive">
               <table class="table table-bordered table-hover table-striped">
                 <thead>
                   <tr>
-                    <th>Spare Parts #</th>
-                    <th>Equipment</th>
-                    <th>Spare Part Type</th>
-                    <th>Spare Part Name</th>
+                    <th>#</th>
+                    <th>Model</th>
+                    <th>Part Type</th>
+                    <th>Part Name</th>
                     <th>Manufacturer</th>
-                    <!-- <th>Model</th> -->
-                    <th>catalogue #</th>
-                   <!--  <th>Serial #</th> -->
+                    <th>Catalogue #</th>
+                    <th>Unit Price</th>
                     <th>Quantity</th>
-
-
+                    <th>Year in Store</th>
+                    <th>Added by</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   <?php
                   foreach ($records->result() as $row){
+                     $edit_url = base_url().'spareparts/create/'.$row->id;
 
                     ?>
                     <tr>
                       <td><?php echo $row->id ?></td>
-                      <td><?php echo $row->equipment ?></td>
-                      <td><?php echo $row->etype ?></td>
-                      <td><?php echo $row->part_type ?></td>
-                      <td><?php echo $row->brand ?></td>
-                      <!-- <td><?php //echo $row->model ?></td> -->
+                      <td><?php echo $row->Equipment ?></td>
+                      <td><?php echo $row->Sparepartype ?></td>
+                      <td><?php echo $row->Sparepartname ?></td>
+                      <td><?php echo $row->Manufacturer ?></td>
                       <td><?php echo $row->catalogue ?></td>
-                      <!-- <td><?php //echo $row->serial ?></td> -->
+                      <td><?php echo $row->Unitprice ?></td>
                       <td><?php echo $row->quantity ?></td>
+                      <td><?php echo $row->YearStore ?></td>
+                      <td><?php echo $row->Addedby ?></td>
+                      <td align="center"><a href="<?php echo $edit_url ?>" class="btn btn-danger btn-xs">Update <i class="fa fa-pencil-square-o
+"></i></td>
 
 
 

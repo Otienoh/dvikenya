@@ -3,13 +3,15 @@ class Spareparts extends MY_Controller {
 
       function __construct() {
         parent::__construct();
+        // $this->output->enable_profiler(true);
+        Modules::run('secure_tings/ni_met');
       }
 
 
       public function index()
       {
        
-       Modules::run('secure_tings/ni_met');
+       // Modules::run('secure_tings/ni_met');
         $this->load->model('mdl_spareparts');
         $this->load->library('pagination');
         $this->load->library('table');
@@ -33,7 +35,7 @@ class Spareparts extends MY_Controller {
         $config['last_tagl_close'] = "</li>";
 
         $this->pagination->initialize($config);
-        $data['records'] = $this->db->get('m_cold_chain_equip', $config['per_page'], $this->uri->segment(3));
+        $data['records'] = $this->db->get('spareparts_view', $config['per_page'], $this->uri->segment(3));
         $data['section'] = "Maintenance";
         $data['subtitle'] = "Spare Parts";
         $data['page_title'] = "Cold Chain Spare Parts";
@@ -44,12 +46,10 @@ class Spareparts extends MY_Controller {
         echo Modules::run('template/'.$this->redirect($this->session->userdata['logged_in']['user_group']), $data); 
       }
 
-
-
-
+      
       function create(){
 
-Modules::run('secure_tings/ni_met');
+// Modules::run('secure_tings/ni_met');
         $update_id= $this->uri->segment(3);
         $data = array();
         $this->load->model('mdl_spareparts');
@@ -57,7 +57,7 @@ Modules::run('secure_tings/ni_met');
             if (!isset($update_id )){
               $update_id = $this->input->post('update_id', $id);
               $data['maequipment']  = $this->mdl_spareparts->getequip();
-              $data['matype']  = $this->mdl_spareparts->getequiptype();
+            
 
             }
 
@@ -65,13 +65,13 @@ Modules::run('secure_tings/ni_met');
               $data = $this->get_data_from_db($update_id);
               $data['update_id'] = $update_id;
               $data['maequipment']  = $this->mdl_spareparts->getequip();
-              $data['matype']  = $this->mdl_spareparts->getequiptype();
+             
 
 
             } else {
               $data= $this->get_data_from_post();
               $data['maequipment']  = $this->mdl_spareparts->getequip();
-              $data['matype']  = $this->mdl_spareparts->getequiptype();
+             
 
 
             }
@@ -91,9 +91,9 @@ Modules::run('secure_tings/ni_met');
        
         $data['equipment']=$this->input->post('equipment', TRUE);
         $data['etype']=$this->input->post('etype', TRUE);
-        $data['part_type']=$this->input->post('part_type', TRUE);
+        $data['e_name']=$this->input->post('e_name', TRUE);
         $data['brand']=$this->input->post('brand', TRUE);
-        $data['model']=$this->input->post('model', TRUE);
+        // $data['model']=$this->input->post('model', TRUE);
         // $data['serial']=$this->input->post('serial', TRUE);
         $data['catalogue']=$this->input->post('catalogue', TRUE);
         $data['unit_price']=$this->input->post('unit_price', TRUE);
@@ -109,18 +109,12 @@ Modules::run('secure_tings/ni_met');
          foreach ($query->result() as $row){
            $data['equipment'] = $row->equipment;
            $data['etype'] = $row->etype;
-           $data['name'] = $row->name;
-           $data['part_type'] = $row->part_type;
+           $data['e_name'] = $row->e_name;
            $data['brand'] = $row->brand;
-           $data['model'] = $row->model;
-           // $data['serial'] = $row->serial;
            $data['catalogue'] = $row->catalogue;
            $data['unit_price'] = $row->unit_price;
            $data['date_purchased'] = $row->date_purchased;
            $data['quantity'] = $row->quantity;
-           $data['decomission'] = $row->decomission;
-           $data['date_added'] = $row->date_added;
-           $data['location'] = $row->location;
            $data['added_by'] = $row->added_by;
           
          }
@@ -128,11 +122,11 @@ Modules::run('secure_tings/ni_met');
      }
 
      function submit (){
-      Modules::run('secure_tings/ni_met');
+      // Modules::run('secure_tings/ni_met');
       $this->load->library('form_validation');
       $this->form_validation->set_rules('equipment', 'Equipment Model', 'required|xss_clean');
       $this->form_validation->set_rules('etype', 'Type of Equipment', 'required|xss_clean');
-      $this->form_validation->set_rules('part_type', 'Type of Part', 'required|xss_clean');
+      $this->form_validation->set_rules('e_name', 'Type of Part', 'required|xss_clean');
       $this->form_validation->set_rules('brand', 'Equipment Brand', 'required|xss_clean');
       // $this->form_validation->set_rules('model', 'Equipment Model', 'required|xss_clean');
       // $this->form_validation->set_rules('serial', 'Equipment Serial No.', 'required|xss_clean');
@@ -156,10 +150,10 @@ Modules::run('secure_tings/ni_met');
            $data['decomission'] = FALSE;
            $data['date_added'] = date('Y-m-d');
            $data['location'] = 'KENYA';
-           $data['added_by'] = $this->session->userdata['logged_in']['user_name'];
-           // echo "<pre>";
-           // var_dump($data);
-           // die();
+           $data['added_by'] = $this->session->userdata['logged_in']['user_id'];
+          // echo "<pre>";
+          //  var_dump($data);
+          //  die();
           
 
 
@@ -179,7 +173,7 @@ Modules::run('secure_tings/ni_met');
     }
 
     function delete($id){
-      Modules::run('secure_tings/ni_met');
+      // Modules::run('secure_tings/ni_met');
       $this->_delete($id);
       $this->session->set_flashdata('msg', '<div id="alert-message" class="alert alert-success text-center">Spare Parts details deleted successfully!</div>');
       redirect('spareparts');

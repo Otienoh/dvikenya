@@ -34,13 +34,20 @@ $query=$this->db->get($table);
 return $query;
 }
 
+// function get_where($id){
+// $table = $this->get_table();
+// $this->db->where('id', $id);
+// $query=$this->db->get($table);
+// return $query;
+// }
+
 function get_where($id){
-$table = $this->get_table();
-$this->db->where('id', $id);
-$query=$this->db->get($table);
-return $query;
+$query="select distinct id, name from m_equipment_type where equipment ='$id' ";
+$e_types=$this->db->query($query);
+return $e_types;
 }
 
+ 
 function get_where_custom($col, $value) {
 $table = $this->get_table();
 $this->db->where($col, $value);

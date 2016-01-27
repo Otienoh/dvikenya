@@ -9,6 +9,7 @@
   <link href="<?php echo base_url() ?>assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link href="<?php echo base_url() ?>assets/css/animate.css" rel="stylesheet" type="text/css" />
   <link href="<?php echo base_url() ?>assets/css/admin.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/plugins/bootstrap-datepicker/css/datepicker.css" />
   <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
   <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> 

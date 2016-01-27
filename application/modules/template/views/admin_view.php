@@ -164,7 +164,7 @@ if ( $user_object['user_level']=='1') {?>
                                     </div>-->
                                     <div class="block-web" >
                                             <div class="header">
-                                                  <h3 class="content-header text-info "><?php echo $user_object['user_statiton']; ?></h3>
+                                                  <h3 class="content-header text-info "><?php echo $page_title; ?></h3>
                                             </div>
                                             <div class="porlets-content">
                                               <?php 

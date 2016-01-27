@@ -8,17 +8,7 @@
       foreach($maequipment as $row ){
       $equipments[$row->id] = $row->name; 
         }
-
- 
-        $etypes = array();
-        foreach($matype as $row ){
-        $etypes[]="Select One";
-        $etypes[$row->id] = $row->name; 
-          }
-          // var_dump($array1);
-          // die();
       ?>
-     
       <div class="row"> 
          <div class="col-lg-6">
              <div class="control-group">
@@ -29,23 +19,28 @@
              <div class="col-lg-6">
              <div class="control-group">
                   <label><b>Spare Part Type</b></label>
-                  <?php echo form_dropdown('etype',$etypes , $etype, 'id="etype" class="form-control"  AutoComplete=off');?>
+                          <select name="etype" id="etype" class="form-control" >
+                          <option value="">- Select One  - </option>
+                          </select>  
                 </div><!--/form-group-->
             </div>
-
             </div><br/>
             <div class="row">
             <div class="col-lg-6">
              <div class="control-group">
                   <label><b>Spare Part Name</b></label>
-                  <input type="text" name="part_type" placeholder="Enter Spare Part Name " class="form-control">
+                  <!-- <input type="text" name="e_name" placeholder="Enter Spare Part Name " class="form-control"> -->
+           <?php echo form_input(['name' => 'e_name', 'id' => 'e_name',  'value' => $e_name ,'class' => 'form-control']); ?>
                 </div><!--/form-group-->
             </div><!--/span-->
               
              <div class="col-lg-6">
              <div class="control-group">
                   <label><b>Spare Part Manufacturer</b></label>
-                  <input type="text" name="brand" class="form-control">
+                  <!-- <input type="text" name="brand"  class="form-control"> -->
+
+                  <?php echo form_input(['name' => 'brand', 'id' => 'brand',  'value' => $brand ,'class' => 'form-control']); ?>
+
                 </div><!--/form-group-->
             </div><!--/span-->
             </div><br/>
@@ -54,13 +49,15 @@
             <div class="col-lg-6">
              <div class="control-group">
                   <label><b>Catalogue #</b></label>
-                  <input type="text" name="catalogue"  class="form-control">
+                  <!-- <input type="text" name="catalogue"  class="form-control"> -->
+                  <?php echo form_input(['name' => 'catalogue', 'id' => 'catalogue',  'value' => $catalogue ,'class' => 'form-control']); ?>
                 </div><!--/form-group-->
             </div><!--/span-->
              <div class="col-lg-6">
              <div class="control-group">
                   <label><b>Unit Price</b></label>
-                  <input type="text" name="unit_price"  class="form-control">
+                  <!-- <input type="text" name="unit_price"  class="form-control"> -->
+                  <?php echo form_input(['name' => 'unit_price', 'id' => 'unit_price',  'value' => $unit_price ,'class' => 'form-control']); ?> 
                 </div><!--/form-group-->
             </div>
             </div><br/>
@@ -68,13 +65,15 @@
             <div class="col-lg-6">
              <div class="control-group">
                   <label><b>Quantity #</b></label>
-                  <input type="text" name="quantity"  class="form-control">
+                  <!-- <input type="text" name="quantity"  class="form-control"> -->
+                   <?php echo form_input(['name' => 'quantity', 'id' => 'quantity',  'value' => $quantity ,'class' => 'form-control']); ?>
                 </div><!--/form-group-->
             </div><!--/span-->
              <div class="col-lg-6">
              <div class="control-group">
                   <label><b>Date of Purchase</b></label>
-                  <input type="text" name="date_purchased"  class="form-control">
+                  <!-- <input type="text" name="date_purchased"  class="form-control "> -->
+                   <?php echo form_input(['name' => 'date_purchased', 'id' => 'date_purchased',  'value' => $date_purchased ,'class' => 'form-control']); ?>
                 </div><!--/form-group-->
             </div>
             </div><br/>
@@ -92,20 +91,51 @@
   <script type="text/javascript">
               $(document).ready(function () { 
                 
-                //start of checker
-                    $('#equipment select').change(function () {
-                    var selEquip = $(this).val();
-                   // console.log(selEquip);
-                    console.log("Detected change... ");
-                    
-                
+                //start of equipment
+                    $('#equipment').change(function () {
 
+                      console.log("Start change... ");
+                    var selEquip = $(this).val();
+                    console.log(selEquip);
+                    $('#etype').children('#removable').remove();
+                    $.get('http://localhost/dvikenya/e_type/ajax_get_etype/'+selEquip , function(data){
+                     obj=jQuery.parseJSON(data);
+                     console.log(obj);
+                      $.each(obj, function(index, value){
+            $('#etype').append('<option id="removable" value="'+value.id+'">'+value.name+'</option>');
+             console.log(value.name);
+          });
+                    });
+                     
                 });
-            //End of user basestation assignment
+            //End of user equipment assignment
 
             });
-               
-               
-               
-        </script>  
+             //End of fun assignment
 
+</script>
+               
+<!-- 
+ <script type="text/javascript">
+  $(document).ready(function(){
+    $('#sub-county').hide(0);
+    $('#county-select').change(function(){
+      id=$(this).val();
+      if (id==0) {
+        $('#sub-county').hide();
+      } else{
+        $('#sub-county').show();
+        $('#sub_county_select').children('#removable').remove();
+        $.get('<?php base_url();?>dashboard/ajax_get_sub_county/'+id, function(data){
+          obj=jQuery.parseJSON(data);
+          
+          $.each(obj, function(index, value){
+            $('#sub_county_select').append('<option id="removable" value="'+value.sub_county_ID+'">'+value.sub_county_name+'</option>');
+            // console.log(value.sub_county_name);
+          });
+        });
+      }
+      
+    });
+  });
+ -->

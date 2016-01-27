@@ -3,7 +3,9 @@ class Users extends MY_Controller
 {
     function __construct() {
         parent::__construct();
+        // $this->output->enable_profiler(true);
         $this->load->model('mdl_users');
+
 
     }
 

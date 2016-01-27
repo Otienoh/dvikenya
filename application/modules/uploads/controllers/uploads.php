@@ -4,11 +4,12 @@
 
         function __construct() {
             parent::__construct();
+            Modules::run('secure_tings/is_logged_in');
         }
 
 
         function index () {
-          Modules::run('secure_tings/is_logged_in');
+          // Modules::run('secure_tings/is_logged_in');
           
           
            $this->load->model('mdl_uploads');
@@ -27,7 +28,7 @@
 
 
         function do_upload() {
-          Modules::run('secure_tings/is_logged_in');
+          // Modules::run('secure_tings/is_logged_in');
             $config['upload_path']='./docs/';
             $config['allowed_types']='pdf|doc|jpg|png|docx';
             $config['max_size']='2048';
@@ -72,7 +73,7 @@
 
 
         function list_files() {
-            Modules::run('secure_tings/is_logged_in');
+            // Modules::run('secure_tings/is_logged_in');
             $this->load->model('mdl_uploads');
             $this->load->library('pagination');
             $this->load->library('table');
@@ -112,7 +113,7 @@
 
 
         function download_file($file_name){
-          Modules::run('secure_tings/is_logged_in');
+          // Modules::run('secure_tings/is_logged_in');
            $this->load->helper('download');
             $data = file_get_contents('./docs/'.$file_name); // Read the file's contents
             $name = $file_name;
@@ -121,7 +122,7 @@
         }
 
         function delete($id){
-          Modules::run('secure_tings/is_logged_in');
+          // Modules::run('secure_tings/is_logged_in');
            $this->load->model('mdl_uploads');
            $this->mdl_uploads->_delete($id);
            redirect('uploads/list_files', 'refresh');

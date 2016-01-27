@@ -32,7 +32,8 @@ if(!isset($this->session->userdata['logged_in'])){
 function ni_admin(){
 $this->is_logged_in();	
 if($this->session->userdata['logged_in']['user_group']!="1"){
-exit('Permission denied! You must have Admin Priviledges.');
+// exit('Permission denied! You must have Admin Priviledges.');
+show_error('Permission denied! You must have Admin Priviledges.');
 return;
 }
 }
@@ -40,7 +41,7 @@ return;
 function ni_member(){
 $this->is_logged_in();	
 if($this->session->userdata['logged_in']['user_group']!="2"){
-exit('Permission denied! You dont have Priviledges to view this page.');
+show_error('Permission denied! You dont have Priviledges to view this page.');
 return;
 }
 
@@ -48,35 +49,35 @@ return;
 function ni_epi(){
 $this->is_logged_in();	
 if($this->session->userdata['logged_in']['user_group']!="3"){
-exit('Permission denied! You dont have Priviledges to view this page.');
+show_error('Permission denied! You dont have Priviledges to view this page.');
 return;
 }
 }
 function ni_hrio(){
 $this->is_logged_in();	
 if($this->session->userdata['logged_in']['user_group']!="4"){
-exit('Permission denied! You dont have Priviledges to view this page.');
+show_error('Permission denied! You dont have Priviledges to view this page.');
 return;
 }
 }
 function ni_moh(){
 $this->is_logged_in();	
 if($this->session->userdata['logged_in']['user_group']!="5"){
-exit('Permission denied! You dont have Priviledges to view this page.');
+show_error('Permission denied! You dont have Priviledges to view this page.');
 return;
 }
 }
 function ni_phn(){
 $this->is_logged_in();	
 if($this->session->userdata['logged_in']['user_group']!="6"){
-exit('Permission denied! You dont have Priviledges to view this page.');
+show_error('Permission denied! You dont have Priviledges to view this page.');
 return;
 }
 }
 function ni_met(){
 $this->is_logged_in();	
 if($this->session->userdata['logged_in']['user_group']!="7"){
-exit('Permission denied! You dont have Priviledges to view this page.');
+show_error('Permission denied! You dont have Priviledges to view this page.');
 return;
 }
 }
@@ -84,35 +85,35 @@ return;
 
 function ni_national(){
 if($this->session->userdata['logged_in']['user_level']!="1"){
-exit('Permission denied! You must be a National User to upload documents');
+show_error('Permission denied! You must be a National User to upload documents');
 return;
 }
 }
 
 function ni_region(){
 if($this->session->userdata['logged_in']['user_level']!="2"){
-exit('Permission denied!');
+show_error('Permission denied!');
 return;
 }
 }
 
 function ni_county(){
 if($this->session->userdata['logged_in']['user_level']!="3"){
-exit('Permission denied!');
+show_error('Permission denied!');
 return;
 }
 }
 
 function ni_subcounty(){
 if($this->session->userdata['logged_in']['user_level']!="4"){
-exit('Permission denied!');
+show_error('Permission denied!');
 return;
 }
 }
 
 function ni_facility(){
 if($this->session->userdata['logged_in']['user_level']!="5"){
-exit('Permission denied!');
+show_error('Permission denied!');
 return;
 }
 }

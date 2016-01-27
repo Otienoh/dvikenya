@@ -5,6 +5,7 @@ class Dashboard extends MY_Controller
 function __construct() {
 parent::__construct();
 Modules::run('secure_tings/is_logged_in');
+// $this->output->enable_profiler(true);
 
 }
 
@@ -12,6 +13,7 @@ Modules::run('secure_tings/is_logged_in');
 
 function home() {
   Modules::run('secure_tings/is_logged_in');
+  $this->output->enable_profiler(true);
   $data['chart'] = $this->get_chart();
   $data['wastage'] = $this->get_wastage();
   $data['mavaccine'] = $this->vaccines();
@@ -19,7 +21,8 @@ function home() {
   $data['section'] = "DVI Kenya";
   $data['subtitle'] = "Dashboard";
   $user_level=$this->session->userdata['logged_in']['user_level'];
-  //$data['page_title'] = "Baringo County";
+  $data['page_title'] = "";
+
    if($user_level!=='1'){
        $data['view_file'] = "dashboard_view";
     } else if($user_level=='1'){

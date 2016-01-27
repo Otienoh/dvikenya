@@ -4,12 +4,13 @@ class Jobcard extends MY_Controller
 
 function __construct() {
 parent::__construct();
+Modules::run('secure_tings/ni_met');
 }
 
 
 public function index()
 	{
-            Modules::run('secure_tings/ni_met');
+            
             $this->load->model('mdl_jobcard');
             $this->load->library('pagination');
             $this->load->library('table');
@@ -48,7 +49,7 @@ public function index()
 
 
 function create(){
-	           Modules::run('secure_tings/ni_met');
+	           // Modules::run('secure_tings/ni_met');
             $update_id= $this->uri->segment(3);
             $data = array();
             $this->load->model('mdl_jobcard');
@@ -97,7 +98,7 @@ function get_data_from_post(){
         }
 
           function submit (){
-         Modules::run('secure_tings/ni_met');    
+         // Modules::run('secure_tings/ni_met');    
         $this->load->library('form_validation');
         $this->form_validation->set_rules('name', 'Group Name', 'required|xss_clean');
         $this->form_validation->set_rules('description', 'Group Description', 'required|xss_clean');
@@ -127,7 +128,7 @@ function get_data_from_post(){
         }
 
         function delete($id){
-           Modules::run('secure_tings/ni_met');
+           // Modules::run('secure_tings/ni_met');
 $this->_delete($id);
 $this->session->set_flashdata('msg', '<div id="alert-message" class="alert alert-success text-center">depot details deleted successfully!</div>');
 redirect('depot');
