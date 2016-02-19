@@ -86,6 +86,32 @@ class Spareparts extends MY_Controller {
         echo Modules::run('template/'.$this->redirect($this->session->userdata['logged_in']['user_group']), $data);
       }
 
+      function update(){
+
+        $update_id= $this->uri->segment(3);
+        $data = array();
+        $this->load->model('mdl_spareparts');
+
+            if (!isset($update_id )){
+              $update_id = $this->input->post('update_id', $id);
+            }
+
+            if (is_numeric($update_id)){
+              $data = $this->get_data_from_db($update_id);
+              $data['update_id'] = $update_id;
+            }
+
+        $data['section'] = "Maintenance";
+        $data['subtitle'] = "Spare Parts";
+        $data['page_title'] = "Update Cold Chain Spare Parts and Accessories";
+        $data['module'] = "spareparts";
+        $data['view_file'] = "update_spareparts_form";
+        $data['user_object'] = $this->get_user_object();
+        $data['main_title'] = $this->get_title();
+        echo Modules::run('template/'.$this->redirect($this->session->userdata['logged_in']['user_group']), $data);
+      }
+
+
 
       function get_data_from_post(){
        
@@ -103,20 +129,22 @@ class Spareparts extends MY_Controller {
         return $data;
       }
 
+      function get_data_from_post_u(){
+       
+       
+       
+        $data['quantity']=$this->input->post('quantity', TRUE);
+
+        return $data;
+      }
+
       function get_data_from_db($update_id){
         
        $query = $this->get_where($update_id);
          foreach ($query->result() as $row){
-           $data['equipment'] = $row->equipment;
-           $data['etype'] = $row->etype;
-           $data['e_name'] = $row->e_name;
-           $data['brand'] = $row->brand;
-           $data['catalogue'] = $row->catalogue;
-           $data['unit_price'] = $row->unit_price;
-           $data['date_purchased'] = $row->date_purchased;
+           
            $data['quantity'] = $row->quantity;
-           $data['added_by'] = $row->added_by;
-          
+           
          }
        return $data;
      }
@@ -128,8 +156,6 @@ class Spareparts extends MY_Controller {
       $this->form_validation->set_rules('etype', 'Type of Equipment', 'required|xss_clean');
       $this->form_validation->set_rules('e_name', 'Type of Part', 'required|xss_clean');
       $this->form_validation->set_rules('brand', 'Equipment Brand', 'required|xss_clean');
-      // $this->form_validation->set_rules('model', 'Equipment Model', 'required|xss_clean');
-      // $this->form_validation->set_rules('serial', 'Equipment Serial No.', 'required|xss_clean');
       $this->form_validation->set_rules('catalogue', 'Equipment Catalogue No.', 'required|xss_clean');
       $this->form_validation->set_rules('unit_price', 'Equipment Unit Price', 'required|xss_clean');
       $this->form_validation->set_rules('date_purchased', 'Date of Purchase', 'required|xss_clean');
@@ -171,6 +197,32 @@ class Spareparts extends MY_Controller {
        redirect('spareparts');
      }
     }
+
+
+      function update_save (){
+      // Modules::run('secure_tings/ni_met');
+      $this->load->library('form_validation');
+      $this->form_validation->set_rules('quantity', 'Quantity', 'required|xss_clean');
+
+
+      $update_id = $this->input->post('update_id', TRUE);
+          if ($this->form_validation->run() == FALSE)
+          {   
+            $this->update();         
+          }
+          else
+          {  
+        $data =  $this->get_data_from_post_u();
+         if(is_numeric($update_id)){
+             $this->_update($update_id, $data);
+             $this->session->set_flashdata('msg', '<div id="alert-message" class="alert alert-success text-center">Spare Parts details updated successfully!</div>');
+           }
+
+                       //$this->session->set_flashdata('success', 'depot added successfully.');
+       redirect('spareparts');
+     }
+    }
+
 
     function delete($id){
       // Modules::run('secure_tings/ni_met');

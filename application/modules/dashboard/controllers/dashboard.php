@@ -13,7 +13,6 @@ Modules::run('secure_tings/is_logged_in');
 
 function home() {
   Modules::run('secure_tings/is_logged_in');
-  $this->output->enable_profiler(true);
   $data['chart'] = $this->get_chart();
   $data['wastage'] = $this->get_wastage();
   $data['mavaccine'] = $this->vaccines();

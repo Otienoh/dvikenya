@@ -60,9 +60,14 @@ $this->db->insert($table, $data);
 }
 
 function _update($id, $data){
-$table = $this->get_table();
-$this->db->where('id', $id);
-$this->db->update($table, $data);
+// $table = $this->get_table();
+// $this->db->where('id', $id);
+// $this->db->update($table, $data);
+	$nqnty=$data['quantity'];
+// array('quantity'=>$id)
+	// var_dump($nqnty);
+	// die();
+$this->db->query("call dvi.proc_update_inventory($id, $nqnty)");
 }
 
 function _delete($id){

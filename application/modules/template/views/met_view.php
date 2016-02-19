@@ -90,7 +90,7 @@
             <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Log Reports</b> </a> </li>              
             
           
-         <!--  <li> <a href="javascript:void(0);"> <i class="fa fa-wrench "></i> CC MAINTENANCE<span class="plus"><i class="fa fa-plus"></i></span> </a> -->
+       
              <?php
              if ( $user_object['user_level']=='1') {?>
             
@@ -100,26 +100,26 @@
             
             <?php } elseif( $user_object['user_level']=='2')  {?>
             
-              <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Spare Requests</b> </a> </li>
-              <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Job Cards</b> </a> </li>
+              <li> <a href="<?php echo site_url('spareparts');?>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Spare Requests</b> </a> </li>
+              <li> <a href="<?php echo site_url('jobcard');?>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Job Cards</b> </a> </li>
               <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Field Engineers</b> </a> </li>
             
             <?php } elseif( $user_object['user_level']=='3')  {?>
              
-              <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Spare Requests</b> </a> </li>
-              <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Job Cards</b> </a> </li>
+              <li> <a href="<?php echo site_url('spareparts');?>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Spare Requests</b> </a> </li>
+              <li> <a href="<?php echo site_url('jobcard');?>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Job Cards</b> </a> </li>
               <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Field Engineers</b> </a> </li>
             
             <?php } elseif( $user_object['user_level']=='4')  {?>
              
               <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Job Requests</b> </a> </li>
-              <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Job Cards</b> </a> </li>
+              <li> <a href="<?php echo site_url('jobcard');?>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Job Cards</b> </a> </li>
               
             
             <?php } else  {?>
             
                <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Job Requests</b> </a> </li>
-              <li> <a href="#"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Job Cards</b> </a> </li>
+              <li> <a href="<?php echo site_url('jobcard');?>"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Job Cards</b> </a> </li>
             
            <?php }
            ?>

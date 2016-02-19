@@ -1,8 +1,10 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 <div class="row">
     <div class="col-lg-12 col-sm-12">
-
-      <a href="<?php echo site_url('jobcard/create');?>" class="btn btn-primary" >Create Job Card</a>
+ <?php
+             if ( $user_object['user_level']!='1') {?>
+            <a href="<?php echo site_url('jobcard/create');?>" class="btn btn-primary" >Create Job Card</a>
+       <?php } ?>
     </div>
   </div>
   </br>
@@ -17,13 +19,15 @@
 
               <div class="panel-body">
                 <ul class="nav nav-tabs" id="myTab">
-
-                  <li class="active"><a data-toggle="tab" href="#tab1"><b>My Job Cards</b></a></li>
-                  <li><a data-toggle="tab" href="#tab2"><b>Open Job Cards</b></a></li>
+ <?php if ( $user_object['user_level']!='1') {?>
+                  <li ><a data-toggle="tab" href="#tab1"><b>My Job Cards</b></a></li>
+<?php } ?>
+                  <li class="active"><a data-toggle="tab" href="#tab2"><b>Open Job Cards</b></a></li>
                   <li><a data-toggle="tab" href="#tab3"><b>Job Card History</b></a></li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
-                  <div id="tab1" class="tab-pane fade in active">
+                 <?php if ( $user_object['user_level']!='1') {?>
+                  <div id="tab1" class="tab-pane fade ">
                    
 <!--Listing Submitted Orders-->
 
@@ -46,7 +50,8 @@
 
 
                   </div>
-                  <div id="tab2" class="tab-pane fade">
+                  <?php } ?>
+                  <div id="tab2" class="tab-pane fade in active">
                    <table class="table table-bordered table-striped">
         <thead>
                 <tr><th>Job Card # </th><th>Date Created</th><th>Job Card Owner</th><td align="center"><b>Action</b></td></tr>

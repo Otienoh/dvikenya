@@ -53,36 +53,42 @@ function create(){
             $update_id= $this->uri->segment(3);
             $data = array();
             $this->load->model('mdl_jobcard');
+            $this->load->model('spareparts/mdl_spareparts');
             
             if (!isset($update_id )){
                 $update_id = $this->input->post('update_id', $id);
+                 $data['maequipment']  = $this->mdl_spareparts->getequip();
 				
             }
             
             if (is_numeric($update_id)){
                 $data = $this->get_data_from_db($update_id);
                 $data['update_id'] = $update_id;
+                 $data['maequipment']  = $this->mdl_spareparts->getequip();
 								
                 
             } else {
-				$data= $this->get_data_from_post();
+				        $data= $this->get_data_from_post();
+                 $data['maequipment']  = $this->mdl_spareparts->getequip();
 						
             }
             
-            $data['section'] = "Maintenance";
-            $data['subtitle'] = "Job Card";
-            $data['page_title'] = "Cold Chain Maintenance Job Card";
-	$data['module'] = "jobcard";
-	$data['view_file'] = "create_jobcard_form";
-	 $data['user_object'] = $this->get_user_object();
-           $data['main_title'] = $this->get_title();
-           echo Modules::run('template/'.$this->redirect($this->session->userdata['logged_in']['user_group']), $data);
+              $data['section'] = "Maintenance";
+              $data['subtitle'] = "Job Card";
+              $data['page_title'] = "Cold Chain Maintenance Job Card";
+              $data['module'] = "jobcard";
+              $data['view_file'] = "create_jobcard_form";
+              $data['user_object'] = $this->get_user_object();
+              $data['main_title'] = $this->get_title();
+              echo Modules::run('template/'.$this->redirect($this->session->userdata['logged_in']['user_group']), $data);
 }
 
 
 function get_data_from_post(){
-            $data['name']=$this->input->post('name', TRUE);
-			$data['description']=$this->input->post('description', TRUE);
+           $data['user_statiton']=$this->input->post('user_statiton', TRUE);
+			     $data['facility']=$this->input->post('facility', TRUE);
+           $data['equipment']=$this->input->post('equipment', TRUE);
+           //user_statiton facility equipment
 			        
             return $data;
         }

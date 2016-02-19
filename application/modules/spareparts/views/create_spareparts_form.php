@@ -115,27 +115,3 @@
 
 </script>
                
-<!-- 
- <script type="text/javascript">
-  $(document).ready(function(){
-    $('#sub-county').hide(0);
-    $('#county-select').change(function(){
-      id=$(this).val();
-      if (id==0) {
-        $('#sub-county').hide();
-      } else{
-        $('#sub-county').show();
-        $('#sub_county_select').children('#removable').remove();
-        $.get('<?php base_url();?>dashboard/ajax_get_sub_county/'+id, function(data){
-          obj=jQuery.parseJSON(data);
-          
-          $.each(obj, function(index, value){
-            $('#sub_county_select').append('<option id="removable" value="'+value.sub_county_ID+'">'+value.sub_county_name+'</option>');
-            // console.log(value.sub_county_name);
-          });
-        });
-      }
-      
-    });
-  });
- -->

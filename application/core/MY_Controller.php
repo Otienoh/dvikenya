@@ -129,7 +129,7 @@ class MY_Controller extends MX_Controller
 						'user_group' =>$user_group ,
 						'user_level' =>$user_level ,
 						'user_id' =>$user_id ,
-						'user_statiton' =>$user_statiton ,
+						'user_statiton' =>$user_statiton,
 						'user_statiton_id' =>$user_statiton_id ,
 						'path' =>$path  );
 			return $data;

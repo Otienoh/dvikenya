@@ -30,7 +30,7 @@
               <table class="table table-bordered table-hover table-striped">
                 <thead>
                   <tr>
-                    <th>#</th>
+                    
                     <th>Model</th>
                     <th>Part Type</th>
                     <th>Part Name</th>
@@ -46,11 +46,11 @@
                 <tbody>
                   <?php
                   foreach ($records->result() as $row){
-                     $edit_url = base_url().'spareparts/create/'.$row->id;
+                     $edit_url = base_url().'spareparts/update/'.$row->id;
 
                     ?>
                     <tr>
-                      <td><?php echo $row->id ?></td>
+                      
                       <td><?php echo $row->Equipment ?></td>
                       <td><?php echo $row->Sparepartype ?></td>
                       <td><?php echo $row->Sparepartname ?></td>
