@@ -8,7 +8,7 @@ parent::__construct();
 }
 
 function get_table() {
-    $table = "m_group";
+    $table = "m_jobcards";
     return $table;
 }
 
